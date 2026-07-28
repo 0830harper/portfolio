@@ -155,6 +155,8 @@
     transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
   }
   .award-thumb:hover img { transform: scale(1.1); }
+  .award-thumb--wide { background: #e7ebf7; }
+  .award-thumb--wide img { object-fit: contain; }
   @media (prefers-reduced-motion: reduce) { .award-thumb img { transition: none; } .award-thumb:hover img { transform: none; } }
   @media (max-width: 560px) { .awards-photo-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; } }
 
@@ -613,6 +615,19 @@
           <div class="award-thumb"><img src="assets/award-10.jpg" alt="2024届优秀毕业生" loading="lazy"></div>
           <div class="award-thumb"><img src="assets/award-11.jpg" alt="第六届大学生创意节 创意交互设计三等奖" loading="lazy"></div>
           <div class="award-thumb"><img src="assets/award-12.jpg" alt="百优学生骨干 2023年度" loading="lazy"></div>
+        </div>
+      </section>
+
+      <section id="activities" class="pad">
+        <div class="entry-head">
+          <div class="entry-title"><span class="en">Exhibitions &amp; Conferences</span><span class="cn">参展与学术活动</span></div>
+        </div>
+        <div class="awards-photo-grid reveal">
+          <div class="award-thumb award-thumb--wide"><img src="assets/award-13.jpg" alt="2024 KSBDA 韩国展览 团体合影" loading="lazy"></div>
+          <div class="award-thumb award-thumb--wide"><img src="assets/award-14.jpg" alt="2024 KSBDA 韩国展览 全州韩屋村参访" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-15.jpg" alt="momo echo 展位现场留影" loading="lazy"></div>
+          <div class="award-thumb award-thumb--wide"><img src="assets/award-16.jpg" alt="2024 KSBDA 韩国展览 会议合影" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-17.jpg" alt="2024 KSBDA Fall International Invitational Exhibition Certificate" loading="lazy"></div>
         </div>
       </section>
 
