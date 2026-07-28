@@ -148,6 +148,16 @@
   }
   .honor-row span strong { color: var(--accent); font-weight: 600; }
 
+  .awards-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+  .award-thumb { aspect-ratio: 3/4; overflow: hidden; box-shadow: 0 1px 2px rgba(26,32,48,0.08); }
+  .award-thumb img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
+  }
+  .award-thumb:hover img { transform: scale(1.1); }
+  @media (prefers-reduced-motion: reduce) { .award-thumb img { transition: none; } .award-thumb:hover img { transform: none; } }
+  @media (max-width: 560px) { .awards-photo-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; } }
+
   .stat-row { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-bottom: 26px; font-size: 0.82rem; color: var(--ink-dim); }
   .stat-row strong { color: var(--ink); font-weight: 600; }
 
@@ -583,6 +593,26 @@
             <div class="quote">「用抽象意象讲有温度的故事」</div>
             <div class="who">— Zhang Huijia</div>
           </div>
+        </div>
+      </section>
+
+      <section id="awards" class="pad">
+        <div class="entry-head">
+          <div class="entry-title"><span class="en">Awards</span><span class="cn">荣誉证书</span></div>
+        </div>
+        <div class="awards-photo-grid reveal">
+          <div class="award-thumb"><img src="assets/award-01.jpg" alt="2020-2021学年 三好学生奖学金" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-02.jpg" alt="2021-2022学年 二等奖学业奖学金" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-03.jpg" alt="2024创意产业与交叉学科国际联合工作坊 参与证书" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-04.jpg" alt="2024创意产业与交叉学科国际联合工作坊 优秀奖" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-05.jpg" alt="2025亚洲基础造型学会广州大会 优秀论文" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-06.jpg" alt="2024年度 一等奖学业奖学金" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-07.jpg" alt="百优学生骨干 2023-2024年度" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-08.jpg" alt="汕尾三下乡双百行动 志愿服务荣誉证书" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-09.jpg" alt="FSDM 2025 Poster Presentation Certificate" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-10.jpg" alt="2024届优秀毕业生" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-11.jpg" alt="第六届大学生创意节 创意交互设计三等奖" loading="lazy"></div>
+          <div class="award-thumb"><img src="assets/award-12.jpg" alt="百优学生骨干 2023年度" loading="lazy"></div>
         </div>
       </section>
 
