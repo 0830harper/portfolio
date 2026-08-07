@@ -40,40 +40,66 @@
   ::selection { background: var(--accent); color: #fff; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-  /* ---------- nav ---------- */
+  /* ---------- nav (floating pill) ---------- */
   .topnav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px clamp(18px, 4vw, 48px);
-    background: rgba(10,13,28,0.55);
-    backdrop-filter: blur(10px);
-    color: #fff;
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 100; width: min(1240px, calc(100% - 32px));
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 10px 12px 10px 18px;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(16px) saturate(1.6);
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 999px;
+    box-shadow: 0 6px 24px -10px rgba(26,32,48,0.28), 0 1px 0 rgba(255,255,255,0.9) inset;
+    color: var(--ink);
     font-size: 0.78rem;
   }
-  .brand { letter-spacing: 0.01em; }
-  .status { opacity: 0.75; }
-
-  .tabbar { display: flex; gap: clamp(6px, 1.4vw, 14px); }
-  .tab-btn {
-    font-family: inherit; font-size: 0.84rem; font-weight: 600; color: rgba(255,255,255,0.88);
-    background: transparent; border: 1px solid rgba(255,255,255,0.28);
-    border-radius: 999px; padding: 8px 16px;
-    cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    letter-spacing: 0.12em; font-weight: 700; font-size: 0.82rem;
+    white-space: nowrap;
   }
-  .tab-btn .tab-cn { opacity: 0.75; margin-left: 3px; }
-  .tab-btn:hover { color: #fff; border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.08); }
-  .tab-btn.is-active { color: #fff; border-color: var(--accent); background: var(--accent); box-shadow: 0 2px 10px -2px rgba(47,91,255,0.6); }
-  @media (max-width: 680px) {
-    .tabbar { gap: 4px; }
-    .tab-btn { padding: 6px 10px; font-size: 0.72rem; }
+  .brand-mark {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    display: grid; place-items: center;
+    background: linear-gradient(150deg, var(--accent), #16266b);
+    color: #fff; font-size: 0.66rem; letter-spacing: 0.02em; font-weight: 700;
+  }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: inherit; font-size: 0.76rem; color: var(--ink);
+    background: transparent; border: 1px solid var(--line-strong);
+    border-radius: 999px; padding: 8px 16px; cursor: pointer; white-space: nowrap;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .nav-cta:hover { border-color: var(--accent); color: var(--accent); background: rgba(47,91,255,0.06); }
+
+  .tabbar { display: flex; gap: 4px; }
+  .tab-btn {
+    font-family: inherit; font-size: 0.82rem; font-weight: 600; color: var(--ink-dim);
+    background: transparent; border: 1px solid transparent;
+    border-radius: 999px; padding: 8px 16px;
+    cursor: pointer; white-space: nowrap;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .tab-btn .tab-cn { opacity: 0.6; margin-left: 4px; font-weight: 500; }
+  .tab-btn:hover { color: var(--ink); background: rgba(26,32,48,0.06); }
+  .tab-btn.is-active { color: #fff; background: var(--ink); }
+  .tab-btn.is-active .tab-cn { opacity: 0.7; }
+  @media (max-width: 900px) {
+    .tab-btn { padding: 7px 12px; font-size: 0.76rem; }
     .tab-btn .tab-cn { display: none; }
   }
-  @media (max-width: 460px) {
-    .topnav { padding: 12px 16px; }
-    .status { display: none; }
-    .brand span { display: none; }
-    .tabbar { gap: 3px; }
-    .tab-btn { padding: 5px 9px; font-size: 0.68rem; }
+  @media (max-width: 700px) {
+    .topnav { top: 10px; padding: 8px 10px 8px 12px; gap: 8px; }
+    .nav-cta { display: none; }
+    .brand { letter-spacing: 0.06em; }
+    .tab-btn { padding: 6px 10px; font-size: 0.72rem; }
+  }
+  @media (max-width: 480px) {
+    .brand-mark { width: 26px; height: 26px; font-size: 0.6rem; }
+    .brand-text { display: none; }
+    .tab-btn { padding: 6px 9px; font-size: 0.7rem; }
   }
 
   /* ---------- page switching ---------- */
@@ -82,44 +108,134 @@
   @keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   @media (prefers-reduced-motion: reduce) { .page.is-active { animation: none; } }
 
-  /* ---------- home split ---------- */
-  .home-split { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); }
-  @media (max-width: 860px) { .home-split { grid-template-columns: 1fr; min-height: auto; } }
-
-  .home-text {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: clamp(40px, 6vw, 90px) clamp(24px, 5vw, 70px);
+  /* ---------- home hero ---------- */
+  .page-home.is-active { display: flex; flex-direction: column; }
+  /* full-bleed: escape main's max-width + padding so the gradient spans the viewport */
+  .page-home {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: calc(-1 * clamp(60px, 8vw, 96px));
   }
-  .home-eyebrow { font-size: 0.86rem; color: var(--accent); font-weight: 600; margin: 0 0 18px; }
+  .home-hero {
+    position: relative;
+    display: grid; grid-template-columns: 1.05fr 0.95fr;
+    align-items: center; gap: clamp(28px, 5vw, 72px);
+    min-height: calc(100vh - 40px);
+    padding: clamp(96px, 12vh, 150px) clamp(22px, 5vw, 64px) clamp(70px, 10vh, 110px);
+    max-width: 1240px; margin: 0 auto; width: 100%;
+  }
+  .home-hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(70% 90% at 8% 12%, rgba(255,214,214,0.75), transparent 62%),
+      radial-gradient(65% 85% at 92% 30%, rgba(198,229,255,0.8), transparent 60%),
+      radial-gradient(80% 80% at 55% 100%, rgba(206,240,219,0.7), transparent 58%),
+      linear-gradient(160deg, #fdf6f2, #f2f6fb 55%, #eef3f8);
+  }
+  @media (max-width: 900px) {
+    .home-hero { grid-template-columns: 1fr; min-height: auto; gap: 34px; }
+  }
+
+  .home-text { display: flex; flex-direction: column; align-items: flex-start; }
+  .home-badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: rgba(255,255,255,0.72); border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 999px; padding: 8px 18px; margin: 0 0 26px;
+    font-size: 0.76rem; letter-spacing: 0.1em; color: var(--ink-dim);
+    box-shadow: 0 4px 14px -8px rgba(26,32,48,0.3);
+  }
+  .home-badge::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--ink); flex-shrink: 0;
+  }
   .home-title {
     font-family: var(--font-serif); font-weight: 700;
-    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-    line-height: 1.08; letter-spacing: -0.01em;
-    margin: 0 0 22px; color: var(--ink);
-    text-wrap: balance;
+    font-size: clamp(2.5rem, 6vw, 4.6rem);
+    line-height: 1.06; letter-spacing: -0.02em;
+    margin: 0 0 16px; color: var(--ink);
   }
-  .home-sub { font-size: 0.9rem; line-height: 1.7; color: var(--ink-dim); margin: 0 0 30px; max-width: 40ch; }
-  .home-sign { font-family: var(--font-serif); font-style: italic; font-size: 1.6rem; color: var(--ink-faint); margin-bottom: 30px; }
+  .home-title .zh { display: block; margin-top: 4px; }
+  .home-role {
+    font-size: clamp(0.95rem, 1.6vw, 1.2rem); font-weight: 600;
+    color: #c08a5e; margin: 0 0 30px; letter-spacing: 0.01em;
+  }
+  .home-role .en { color: #c9a184; }
+  .home-quote {
+    width: 100%; max-width: 480px;
+    background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.85);
+    border-radius: 16px; padding: 18px 22px; margin: 0 0 22px;
+    box-shadow: 0 8px 26px -16px rgba(26,32,48,0.35);
+  }
+  .home-quote-label { font-size: 0.72rem; color: var(--ink-faint); letter-spacing: 0.06em; margin-bottom: 8px; }
+  .home-quote-text { font-size: 0.92rem; line-height: 1.7; color: var(--ink); }
+  .home-sub { font-size: 0.88rem; line-height: 1.85; color: var(--ink-dim); margin: 0 0 24px; max-width: 46ch; }
+  .home-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 34px; }
+  .home-tags span {
+    font-size: 0.76rem; color: var(--ink-dim);
+    background: rgba(255,255,255,0.66); border: 1px solid rgba(26,32,48,0.1);
+    border-radius: 999px; padding: 7px 15px;
+  }
+  .home-actions { display: flex; flex-wrap: wrap; gap: 12px; }
   .home-cta {
-    align-self: flex-start;
-    font-family: inherit; font-size: 0.86rem; color: var(--ink);
-    background: transparent; border: 1px solid var(--line-strong);
-    padding: 13px 22px; cursor: pointer;
+    font-family: inherit; font-size: 0.86rem;
+    border-radius: 999px; padding: 14px 30px; cursor: pointer;
     display: inline-flex; align-items: center; gap: 8px;
-    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    border: 1px solid var(--ink); background: var(--ink); color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
   }
-  .home-cta:hover { border-color: var(--accent); color: var(--accent); background: rgba(47,91,255,0.06); }
+  .home-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -12px rgba(26,32,48,0.6); }
+  .home-cta--ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+  .home-cta--ghost:hover { border-color: var(--ink); background: rgba(255,255,255,0.6); }
+  @media (prefers-reduced-motion: reduce) { .home-cta:hover { transform: none; } }
 
+  .home-visual { position: relative; justify-self: center; width: 100%; max-width: 460px; }
   .home-photo {
-    position: relative;
-    min-height: 320px;
-    overflow: hidden;
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/5; border-radius: 22px;
     background: #16205a url(assets/image-001.jpg) center / cover no-repeat;
+    border: 6px solid rgba(255,255,255,0.85);
+    box-shadow: 0 26px 60px -28px rgba(26,32,48,0.6);
   }
   .home-photo .grain {
     position: absolute; inset: 0; opacity: 0.07; mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
+  .home-now {
+    position: absolute; right: -10px; bottom: 34px;
+    background: rgba(255,255,255,0.94); backdrop-filter: blur(10px);
+    border-radius: 14px; padding: 14px 20px;
+    box-shadow: 0 16px 34px -18px rgba(26,32,48,0.5);
+    max-width: 78%;
+  }
+  .home-now-label { font-size: 0.66rem; letter-spacing: 0.12em; color: var(--ink-faint); margin-bottom: 5px; }
+  .home-now-main { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+  .home-now-sub { font-size: 0.76rem; color: var(--ink-dim); margin-top: 3px; }
+  @media (max-width: 900px) {
+    .home-visual { max-width: 400px; }
+    .home-now { right: 0; }
+  }
+
+  .home-scroll {
+    display: flex; justify-content: center;
+    padding: 0 20px clamp(26px, 5vh, 46px);
+    margin-top: -30px;
+  }
+  .home-scroll button {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: inherit; font-size: 0.78rem; color: var(--ink-dim);
+    background: rgba(255,255,255,0.72); border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 999px; padding: 11px 22px; cursor: pointer;
+    box-shadow: 0 6px 20px -12px rgba(26,32,48,0.4);
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .home-scroll button:hover { color: var(--ink); transform: translateY(-2px); }
+  .home-scroll .arrow {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    display: grid; place-items: center; font-size: 0.7rem;
+    background: #e9c9a8; color: #7a4b22;
+  }
+  @media (prefers-reduced-motion: reduce) { .home-scroll button:hover { transform: none; } }
 
   /* ---------- masthead (education background) ---------- */
   .masthead {
@@ -492,29 +608,59 @@
 </style>
 
 <nav class="topnav">
-  <div class="brand">Zhang Huijia<span style="opacity:.65"> · Motion &amp; Interactive Designer</span></div>
+  <div class="brand"><span class="brand-mark" aria-hidden="true">ZH</span><span class="brand-text">PORTFOLIO</span></div>
   <div class="tabbar">
     <button class="tab-btn is-active" data-page="home" type="button">首页 <span class="tab-cn">Home</span></button>
     <button class="tab-btn" data-page="about" type="button">关于 <span class="tab-cn">About</span></button>
     <button class="tab-btn" data-page="work" type="button">作品 <span class="tab-cn">Works</span></button>
     <button class="tab-btn" data-page="research" type="button">论文 <span class="tab-cn">Research</span></button>
   </div>
-  <div class="status">open to work</div>
+  <button class="nav-cta" data-goto="about" type="button">open to work <span aria-hidden="true">↗</span></button>
 </nav>
 
 <main>
   <div class="page page-home is-active" id="page-home">
-    <div class="home-split">
+    <div class="home-hero">
       <div class="home-text">
-        <p class="home-eyebrow">Digital Media Designer</p>
-        <h1 class="home-title">Welcome To<br>My Website</h1>
-        <p class="home-sub">数字媒体设计师 — 动效 / 交互 / 影像<br>现居广州 · 广州美术学院在读</p>
-        <div class="home-sign">Zhang Huijia</div>
-        <button class="home-cta" data-goto="work" type="button">查看作品 <span aria-hidden="true">→</span></button>
+        <div class="home-badge">HELLO / 你好</div>
+        <h1 class="home-title">Hi,<span class="zh">我是张汇佳</span></h1>
+        <p class="home-role">数字媒体设计师 <span class="en">/ Digital Media Designer</span></p>
+
+        <div class="home-quote">
+          <div class="home-quote-label">个人理念 /</div>
+          <div class="home-quote-text">用抽象意象讲有温度的故事，做设计是把感受翻译成画面的过程。</div>
+        </div>
+
+        <p class="home-sub">广州美术学院数字媒体艺术本科 &amp; 研究生在读，专注影像设计、交互装置与虚拟场景搭建，硕士期间以第一或合作作者发表多篇 EI 国际会议论文。</p>
+
+        <div class="home-tags">
+          <span>影像 / 动效</span>
+          <span>交互装置</span>
+          <span>三维建模</span>
+          <span>AIGC</span>
+          <span>TouchDesigner</span>
+        </div>
+
+        <div class="home-actions">
+          <button class="home-cta" data-goto="work" type="button">查看作品 <span aria-hidden="true">→</span></button>
+          <button class="home-cta home-cta--ghost" data-goto="about" type="button">关于我</button>
+        </div>
       </div>
-      <div class="home-photo">
-        <div class="grain"></div>
+
+      <div class="home-visual">
+        <div class="home-photo">
+          <div class="grain"></div>
+        </div>
+        <div class="home-now">
+          <div class="home-now-label">NOW</div>
+          <div class="home-now-main">广州美术学院</div>
+          <div class="home-now-sub">数字媒体艺术 · 硕士在读</div>
+        </div>
       </div>
+    </div>
+
+    <div class="home-scroll">
+      <button data-goto="work" type="button">进入作品集，探索更多 <span class="arrow" aria-hidden="true">→</span></button>
     </div>
   </div>
 
