@@ -128,10 +128,10 @@
   .home-hero::before {
     content: ""; position: absolute; inset: 0; z-index: -1;
     background:
-      radial-gradient(70% 90% at 8% 12%, rgba(255,214,214,0.75), transparent 62%),
-      radial-gradient(65% 85% at 92% 30%, rgba(198,229,255,0.8), transparent 60%),
-      radial-gradient(80% 80% at 55% 100%, rgba(206,240,219,0.7), transparent 58%),
-      linear-gradient(160deg, #fdf6f2, #f2f6fb 55%, #eef3f8);
+      radial-gradient(72% 90% at 6% 8%, rgba(158,185,255,0.55), transparent 60%),
+      radial-gradient(60% 80% at 95% 24%, rgba(196,222,255,0.7), transparent 58%),
+      radial-gradient(85% 75% at 60% 104%, rgba(224,232,250,0.9), transparent 56%),
+      linear-gradient(158deg, #f4f7fd, #eaf0fa 52%, #e6ecf7);
   }
   @media (max-width: 900px) {
     .home-hero { grid-template-columns: 1fr; min-height: auto; gap: 34px; }
@@ -158,9 +158,9 @@
   .home-title .zh { display: block; margin-top: 4px; }
   .home-role {
     font-size: clamp(0.95rem, 1.6vw, 1.2rem); font-weight: 600;
-    color: #c08a5e; margin: 0 0 30px; letter-spacing: 0.01em;
+    color: var(--accent); margin: 0 0 30px; letter-spacing: 0.01em;
   }
-  .home-role .en { color: #c9a184; }
+  .home-role .en { color: #7d97e8; }
   .home-quote {
     width: 100%; max-width: 480px;
     background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.85);
@@ -233,7 +233,7 @@
   .home-scroll .arrow {
     width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
     display: grid; place-items: center; font-size: 0.7rem;
-    background: #e9c9a8; color: #7a4b22;
+    background: var(--accent); color: #fff;
   }
   @media (prefers-reduced-motion: reduce) { .home-scroll button:hover { transform: none; } }
 
