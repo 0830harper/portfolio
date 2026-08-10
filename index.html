@@ -125,47 +125,83 @@
     padding: clamp(96px, 12vh, 150px) clamp(22px, 5vw, 64px) clamp(70px, 10vh, 110px);
     max-width: 1240px; margin: 0 auto; width: 100%;
   }
+  /* backdrop: blue wash + linen weave + cloudy mottling */
   .home-hero::before {
     content: ""; position: absolute; inset: 0; z-index: -2;
-    background:
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='0.014' numOctaves='4' seed='11' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23m)' opacity='0.16'/></svg>"),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.1) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(30,52,116,0.07) 0 1px, transparent 1px 3px),
       radial-gradient(70% 85% at 10% 6%, rgba(140,172,246,0.5), transparent 60%),
       radial-gradient(60% 80% at 96% 22%, rgba(182,212,252,0.6), transparent 58%),
       radial-gradient(85% 75% at 55% 106%, rgba(214,226,248,0.85), transparent 56%),
       linear-gradient(158deg, #eef3fc, #e3ebf8 52%, #dde7f5);
+    background-size: 420px 420px, auto, auto, auto, auto, auto, auto;
+    background-blend-mode: multiply, normal, normal, normal, normal, normal, normal;
   }
-  /* paper grain over the whole hero, ties the collage together */
+  /* fine grain + vignette on top of everything, unifies the collage */
   .home-hero::after {
     content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-    opacity: 0.5; mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)' opacity='0.42'/></svg>"),
+      radial-gradient(120% 100% at 50% 45%, transparent 55%, rgba(38,56,110,0.14));
+    background-size: 140px 140px, auto;
+    mix-blend-mode: multiply; opacity: 0.75;
   }
   @media (max-width: 900px) {
     .home-hero { grid-template-columns: 1fr; min-height: auto; gap: 46px; }
   }
 
   /* ---- paper card (left) ---- */
+  .home-paper { position: relative; }
+  /* a second sheet peeking out behind, at a different angle */
+  .paper-back {
+    position: absolute; inset: 20px -16px -18px 14px; z-index: 0;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='m2'><feTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='4' seed='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23m2)' opacity='0.16'/></svg>"),
+      linear-gradient(150deg, #f2eee2, #e9e4d5);
+    background-size: 420px 420px, auto;
+    background-blend-mode: multiply, normal;
+    transform: rotate(2.2deg);
+    box-shadow: 0 18px 34px -22px rgba(26,32,48,0.45);
+  }
   .home-text {
-    position: relative;
+    position: relative; z-index: 1;
     display: flex; flex-direction: column; align-items: flex-start;
-    background:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/></svg>") repeat,
-      #fcfbf7;
-    background-blend-mode: multiply;
+    background-image:
+      /* fine grain */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='pg'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23pg)' opacity='0.4'/></svg>"),
+      /* cloudy pulp mottling */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='pm'><feTurbulence type='fractalNoise' baseFrequency='0.018' numOctaves='4' seed='23' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23pm)' opacity='0.14'/></svg>"),
+      /* pressed fibre streaks, two directions */
+      repeating-linear-gradient(96deg, rgba(126,114,92,0.045) 0 1px, transparent 1px 4px),
+      repeating-linear-gradient(4deg, rgba(126,114,92,0.03) 0 1px, transparent 1px 7px),
+      /* warm cream stock */
+      radial-gradient(125% 120% at 28% 8%, #fdfcf8, #f7f4ec 62%, #efe9db);
+    background-size: 140px 140px, 400px 400px, auto, auto, auto;
+    background-blend-mode: multiply, multiply, normal, normal, normal;
     padding: clamp(28px, 3.4vw, 44px) clamp(24px, 3vw, 42px) clamp(30px, 3.4vw, 44px);
     transform: rotate(-1.2deg);
     box-shadow:
-      0 1px 0 rgba(255,255,255,0.8) inset,
-      0 2px 4px -1px rgba(26,32,48,0.16),
-      0 26px 50px -26px rgba(26,32,48,0.45);
+      inset 0 0 46px rgba(150,136,110,0.16),
+      inset 0 1px 0 rgba(255,255,255,0.75),
+      0 2px 4px -1px rgba(26,32,48,0.18),
+      0 30px 55px -28px rgba(26,32,48,0.5);
   }
   /* washi tape strips pinning the card down */
   .home-text::before, .home-text::after {
     content: ""; position: absolute; z-index: 2;
-    width: 104px; height: 26px;
-    background: linear-gradient(105deg, rgba(96,133,232,0.55), rgba(150,182,247,0.5));
-    border-left: 1px dashed rgba(255,255,255,0.5);
-    border-right: 1px dashed rgba(255,255,255,0.5);
-    box-shadow: 0 2px 6px -2px rgba(26,32,48,0.3);
+    width: 104px; height: 27px;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='tg'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23tg)' opacity='0.35'/></svg>"),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.16) 0 2px, transparent 2px 5px),
+      linear-gradient(105deg, rgba(96,133,232,0.6), rgba(150,182,247,0.52));
+    background-size: 120px 120px, auto, auto;
+    background-blend-mode: overlay, normal, normal;
+    /* frayed tape ends */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 3px, #000 calc(100% - 3px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 3px, #000 calc(100% - 3px), transparent 100%);
+    box-shadow: 0 2px 6px -2px rgba(26,32,48,0.35);
   }
   .home-text::before { top: -13px; left: -22px; transform: rotate(-24deg); }
   .home-text::after { bottom: -13px; right: -20px; transform: rotate(-20deg); }
@@ -230,11 +266,16 @@
   .home-visual { position: relative; justify-self: center; width: 100%; max-width: 400px; }
   .home-frame {
     position: relative;
-    background: #fdfdfb;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='fg'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23fg)' opacity='0.3'/></svg>"),
+      linear-gradient(160deg, #fefdfa, #f6f3ec);
+    background-size: 140px 140px, auto;
+    background-blend-mode: multiply, normal;
     padding: 14px 14px 52px;
     transform: rotate(2.4deg);
     box-shadow:
-      0 2px 4px -1px rgba(26,32,48,0.18),
+      inset 0 0 24px rgba(150,136,110,0.12),
+      0 2px 4px -1px rgba(26,32,48,0.2),
       0 30px 56px -28px rgba(26,32,48,0.55);
   }
   .home-frame .clip {
@@ -728,6 +769,8 @@
 <main>
   <div class="page page-home is-active" id="page-home">
     <div class="home-hero">
+      <div class="home-paper">
+      <div class="paper-back" aria-hidden="true"></div>
       <div class="home-text">
         <div class="home-badge">HELLO / 你好</div>
         <h1 class="home-title">Hi,<span class="zh">我是张汇佳</span></h1>
@@ -752,6 +795,7 @@
           <button class="home-cta" data-goto="work" type="button">查看作品 <span aria-hidden="true">→</span></button>
           <button class="home-cta home-cta--ghost" data-goto="about" type="button">关于我</button>
         </div>
+      </div>
       </div>
 
       <div class="home-visual">
