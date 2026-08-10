@@ -634,10 +634,17 @@
 
   /* ---------- contact ---------- */
   .contact-line { font-size: 0.9rem; margin-bottom: 18px; }
-  .contact-email { font-size: 1rem; border-bottom: 1px solid var(--line-strong); padding-bottom: 3px; transition: border-color 0.2s ease, color 0.2s ease; }
-  .contact-email:hover { color: var(--accent); border-color: var(--accent); }
-  .socials { display: flex; gap: 18px; margin-top: 18px; font-size: 0.78rem; color: var(--ink-dim); }
-  .socials a:hover { color: var(--accent); }
+  .contact-wechat {
+    display: inline-flex; flex-direction: column; gap: 6px;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 14px; padding: 16px 24px;
+    box-shadow: 0 10px 26px -18px rgba(26,32,48,0.4);
+  }
+  .contact-wechat-label { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--ink-faint); }
+  .contact-wechat-id {
+    font-family: var(--font-serif); font-size: 1.35rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
 
   section.pad { padding-bottom: clamp(56px, 8vw, 90px); }
 
@@ -749,7 +756,7 @@
       <ul class="awards-list">
         <li>平面剪辑类 AI / PS / PR / ID / AE / Figma</li>
         <li>建模类 C4D / Blender</li>
-        <li>编程类 TouchDesigner</li>
+        <li>编程类 TouchDesigner / AI Coding</li>
       </ul>
     </div>
   </div>
@@ -762,7 +769,7 @@
 
         <div class="edu-intro reveal">
           <h3>我的学习轨迹</h3>
-          <p>从大学城到昌岗，本科到硕士，在同一所美院里把数字媒体艺术从入门做到研究。</p>
+          <p>从大学城到昌岗，本科到硕士。</p>
         </div>
 
         <div class="edu-journey reveal">
@@ -910,11 +917,9 @@
           <div class="entry-title"><span class="en">Contact</span><span class="cn">联系方式</span></div>
         </div>
         <p class="contact-line reveal">欢迎聊聊合作、职位机会，或者单纯交流作品。</p>
-        <a class="contact-email reveal" href="mailto:hello@example.com">hello@example.com</a>
-        <div class="socials reveal">
-          <a href="#">Instagram</a>
-          <a href="#">Behance</a>
-          <a href="#">小红书</a>
+        <div class="contact-wechat reveal">
+          <span class="contact-wechat-label">微信 / WeChat</span>
+          <span class="contact-wechat-id">19129214183</span>
         </div>
       </section>
   </div>
