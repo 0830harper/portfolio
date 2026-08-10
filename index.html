@@ -541,56 +541,93 @@
     .car-item.is-left, .car-item.is-right { opacity: 0.5; }
   }
 
-  /* ---------- about (layered collage) ---------- */
-  .collage { position: relative; min-height: 520px; margin-top: 10px; }
-  .collage .bg-word {
-    position: absolute; top: -6%; left: -2%;
-    font-size: clamp(3.5rem, 11vw, 8rem);
-    font-weight: 700; letter-spacing: -0.02em;
-    color: var(--accent); opacity: 0.08;
-    white-space: nowrap;
+  /* ---------- education journey ---------- */
+  .edu-intro { text-align: center; margin: 0 auto 40px; max-width: 46ch; }
+  .edu-intro h3 {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem); letter-spacing: -0.01em;
+    margin: 0 0 10px; color: var(--ink);
   }
-  .collage-card {
-    position: absolute;
-    box-shadow: 0 18px 30px -18px rgba(26,32,48,0.28);
-  }
-  .card-main {
-    top: 6%; left: 4%; width: min(360px, 62%);
-    background: linear-gradient(160deg, #2f5bff, #16266b);
-    color: #fff;
-    padding: 28px 26px;
-    transform: rotate(-2deg);
-  }
-  .card-main .idx { font-size: 0.72rem; opacity: 0.7; letter-spacing: 0.04em; }
-  .card-main h3 { font-size: 1.1rem; margin: 6px 0 16px; font-weight: 600; }
-  .card-main .about-desc { color: rgba(255,255,255,0.82); font-size: 0.84rem; line-height: 1.8; margin: 0 0 18px; }
-  .card-main .about-desc strong { color: #fff; }
-  .card-main hr { border: none; border-top: 1px solid rgba(255,255,255,0.25); margin: 16px 0; }
-  .card-main .skills-label { color: rgba(255,255,255,0.6); font-size: 0.7rem; margin-bottom: 8px; }
-  .card-main ul { list-style: none; margin: 0; padding: 0; font-size: 0.82rem; line-height: 2; }
-  .card-main ul li::before { content: "· "; opacity: 0.6; }
+  .edu-intro p { font-size: 0.86rem; line-height: 1.7; color: var(--ink-dim); margin: 0; }
 
-  .card-photo {
-    top: 30%; right: 2%; width: min(220px, 46%);
-    aspect-ratio: 3/4;
-    transform: rotate(3deg);
+  .edu-journey {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center; gap: clamp(16px, 3vw, 34px);
+  }
+  .edu-link {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-size: 0.72rem; color: var(--ink-faint); letter-spacing: 0.06em; white-space: nowrap;
+  }
+  .edu-link::before, .edu-link::after {
+    content: ""; width: 1px; height: 34px;
+    background: linear-gradient(var(--line-strong), transparent);
+  }
+  .edu-link::after { background: linear-gradient(transparent, var(--line-strong)); }
+
+  .edu-card {
+    background: var(--paper); border-radius: 18px; overflow: hidden;
+    box-shadow: 0 18px 40px -24px rgba(26,32,48,0.4);
+    display: flex; flex-direction: column; height: 100%;
+  }
+  .edu-cover {
+    position: relative; aspect-ratio: 16/9;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 20px 22px; color: #fff; overflow: hidden;
+    background: linear-gradient(145deg, #3a63e0 0%, #1d3699 55%, #16266b 100%);
+  }
+  .edu-card--grad .edu-cover {
+    background: linear-gradient(145deg, #5a7ce8 0%, #2f5bff 50%, #1b2f7a 100%);
+  }
+  .edu-cover::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(50% 60% at 80% 18%, rgba(255,255,255,0.28), transparent 62%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+    background-blend-mode: soft-light; opacity: 0.9;
+  }
+  .edu-cover-en {
+    position: relative;
+    font-size: 0.64rem; letter-spacing: 0.18em; opacity: 0.72; margin-bottom: 6px;
+  }
+  .edu-cover-name {
+    position: relative;
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem); line-height: 1.25;
+  }
+  .edu-cover-campus {
+    position: relative; margin-top: 4px;
+    font-size: 0.78rem; opacity: 0.82;
+  }
+  .edu-seal {
+    position: absolute; top: 16px; right: 18px; z-index: 1;
+    width: 46px; height: 46px; border-radius: 50%;
+    display: grid; place-items: center; text-align: center;
+    border: 1px solid rgba(255,255,255,0.45);
+    font-size: 0.56rem; line-height: 1.2; letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.9);
   }
 
-  .card-tag {
-    left: 8%; bottom: 4%; width: 168px;
-    background: var(--paper);
-    padding: 16px 16px 18px;
-    transform: rotate(-4deg);
-    display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  .edu-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .edu-period-tag { font-size: 0.78rem; font-weight: 600; color: #c08a5e; letter-spacing: 0.02em; }
+  .edu-degree-line { font-size: 0.76rem; color: var(--ink-faint); }
+  .edu-degree-line strong { color: var(--ink-dim); font-weight: 600; }
+  .edu-school { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--ink); }
+  .edu-desc { font-size: 0.82rem; line-height: 1.8; color: var(--ink-dim); margin: 0; }
+  .edu-highlights { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 6px; }
+  .edu-highlights span {
+    font-size: 0.72rem; color: var(--ink-dim);
+    background: rgba(47,91,255,0.07); border: 1px solid rgba(47,91,255,0.16);
+    border-radius: 999px; padding: 5px 11px;
   }
-  .card-tag .clip { align-self: center; margin-bottom: -6px; }
-  .card-tag .quote { font-size: 0.8rem; line-height: 1.6; color: var(--ink); }
-  .card-tag .who { font-size: 0.7rem; color: var(--ink-faint); }
 
-  @media (max-width: 720px) {
-    .collage { min-height: 0; }
-    .collage .bg-word { display: none; }
-    .collage-card { position: static; width: 100% !important; transform: none !important; margin-bottom: 18px; }
+  @media (max-width: 760px) {
+    .edu-journey { grid-template-columns: 1fr; gap: 18px; }
+    .edu-link { flex-direction: row; gap: 12px; }
+    .edu-link::before, .edu-link::after {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line-strong));
+    }
+    .edu-link::after { background: linear-gradient(90deg, var(--line-strong), transparent); }
   }
 
   .skills-label { font-size: 0.74rem; color: var(--ink-faint); margin-bottom: 10px; }
@@ -670,18 +707,6 @@
     <div class="masthead-name">Zhang Huijia</div>
     <div class="masthead-school">广州美术学院 · 数字媒体艺术专业</div>
   </div>
-  <div class="edu-timeline">
-    <div class="edu-row">
-      <span class="edu-period">2020.09 – 2024.06</span>
-      <span class="edu-degree">本科</span>
-      <span class="edu-major">广州美术学院 · 数字媒体艺术</span>
-    </div>
-    <div class="edu-row">
-      <span class="edu-period">2024.09 – 至今</span>
-      <span class="edu-degree">硕士研究生</span>
-      <span class="edu-major">广州美术学院 · 数字媒体艺术</span>
-    </div>
-  </div>
   <div class="stat-row">
     <span>平均学分绩点 <strong>4.01</strong></span>
     <span>综合成绩排名 <strong>1/78</strong></span>
@@ -732,35 +757,56 @@
 
       <section id="about" class="pad">
         <div class="entry-head">
-          <div class="entry-title"><span class="en">About</span><span class="cn">关于我</span></div>
+          <div class="entry-title"><span class="en">Education</span><span class="cn">教育背景</span></div>
         </div>
 
-        <div class="collage reveal">
-          <div class="bg-word">AZURE</div>
+        <div class="edu-intro reveal">
+          <h3>我的学习轨迹</h3>
+          <p>从大学城到昌岗，本科到硕士，在同一所美院里把数字媒体艺术从入门做到研究。</p>
+        </div>
 
-          <div class="collage-card card-main">
-            <div class="idx">Vol.01 — 关于我</div>
-            <h3>Zhang Huijia</h3>
-            <p class="about-desc">广州美术学院数字媒体艺术专业本科 &amp; 研究生在读，专注于影像设计、交互装置与虚拟场景搭建。
-              擅长把民俗文化、童年记忆这类抽象情感，转译成可被观众直接感受到的光影与空间体验。<strong>做设计是把感受翻译成画面的过程。</strong></p>
-            <hr>
-            <div class="skills-label">tools &amp; skills</div>
-            <ul>
-              <li>Cinema 4D · Blender</li>
-              <li>AI / PS / PR / AE / Figma</li>
-              <li>TouchDesigner</li>
-            </ul>
-          </div>
+        <div class="edu-journey reveal">
+          <article class="edu-card">
+            <div class="edu-cover">
+              <div class="edu-seal">GAFA<br>2020</div>
+              <div class="edu-cover-en">GUANGZHOU ACADEMY OF FINE ARTS</div>
+              <div class="edu-cover-name">广州美术学院</div>
+              <div class="edu-cover-campus">大学城校区 · Panyu Campus</div>
+            </div>
+            <div class="edu-body">
+              <div class="edu-period-tag">2020.09 — 2024.06</div>
+              <div class="edu-degree-line">本科 / <strong>数字媒体艺术</strong></div>
+              <div class="edu-school">广州美术学院 · 大学城校区</div>
+              <p class="edu-desc">四年在大学城校区完成数字媒体艺术的系统训练，从平面与影像逐步走向三维建模、动效与交互装置，也是《火龙祈愿》《月宫虚拟舞台》等作品成型的阶段。</p>
+              <div class="edu-highlights">
+                <span>优秀毕业生</span>
+                <span>连续三好学生奖学金</span>
+                <span>专业班长</span>
+              </div>
+            </div>
+          </article>
 
-          <div class="collage-card card-photo tile"><div class="tile-inner"></div></div>
+          <div class="edu-link">成长路径</div>
 
-          <div class="collage-card card-tag">
-            <svg class="clip" width="16" height="34" viewBox="0 0 18 40" aria-hidden="true">
-              <path d="M9 4 C14 4 16 8 16 13 L16 30 C16 35 12 37 9 37 C6 37 3 35 3 31 L3 11 C3 8 5 6 8 6 C11 6 12 8 12 11 L12 28" fill="none" stroke="#9aa3bd" stroke-width="2.4" stroke-linecap="round"/>
-            </svg>
-            <div class="quote">「用抽象意象讲有温度的故事」</div>
-            <div class="who">— Zhang Huijia</div>
-          </div>
+          <article class="edu-card edu-card--grad">
+            <div class="edu-cover">
+              <div class="edu-seal">GAFA<br>2024</div>
+              <div class="edu-cover-en">GUANGZHOU ACADEMY OF FINE ARTS</div>
+              <div class="edu-cover-name">广州美术学院</div>
+              <div class="edu-cover-campus">昌岗校区 · Changgang Campus</div>
+            </div>
+            <div class="edu-body">
+              <div class="edu-period-tag">2024.09 — 至今</div>
+              <div class="edu-degree-line">硕士研究生 / <strong>数字媒体艺术</strong></div>
+              <div class="edu-school">广州美术学院 · 昌岗校区</div>
+              <p class="edu-desc">研究方向聚焦人工智能与数字媒体艺术，把创作经验反推成可被论证的方法；在读期间以第一作者在多个国际会议发表论文，并持续参与展演与互动装置实践。</p>
+              <div class="edu-highlights">
+                <span>比亚迪硕士奖学金</span>
+                <span>一等学业奖学金</span>
+                <span>8 篇国际会议论文</span>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
